@@ -1,6 +1,41 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
+
+double deg2rad(double a1){
+    double d2r = a1*M_PI/180;
+    return d2r;
+}
+
+double rad2deg(double a2){
+    double r2d = a2*180/M_PI;
+    return r2d;
+}
+
+double findXComponent(double l1 ,double l2, double a1, double a2){
+    double length_x = l1*cos(a1) + l2*cos(a2);
+    return length_x;
+}
+
+double findYComponent(double l1 ,double l2, double a1, double a2){
+    double length_y = l1*sin(a1) + l2*sin(a2);
+    return length_y;
+}
+
+double pythagoras(double xcomp ,double ycomp){
+    double pytha = sqrt((xcomp*xcomp)+(ycomp*ycomp));
+    return pytha;
+}
+
+void showResult(double result_vec_length,double result_vec_direction){
+    cout <<"\n" <<"Length of the resultant vector = " << result_vec_length <<"\n" ;
+
+    cout << "Direction of the resultant vector (deg) = " << result_vec_direction << "\n";
+    cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
+}
+
+
 
 int main(){
     double l1,l2,a1,a2,xcomp,ycomp,result_vec_length,result_vec_direction;
@@ -12,13 +47,12 @@ int main(){
     cin >> l2;
     cout << "Enter direction of the second vector (deg): ";
     cin >> a2;
-    
+    cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
     a1 = deg2rad(a1);
     a2 = deg2rad(a2);
     xcomp = findXComponent(l1,l2,a1,a2);
     ycomp = findYComponent(l1,l2,a1,a2);
     result_vec_length = pythagoras(xcomp,ycomp);
     result_vec_direction = rad2deg(atan2(ycomp,xcomp)); 
-
     showResult(result_vec_length,result_vec_direction);
 }
